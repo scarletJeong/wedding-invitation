@@ -1,3 +1,12 @@
+/* 커스텀 폰트 */
+@font-face {
+  font-family: 'Cafe24Lovingu';
+  src: url('/fonts/Cafe24Lovingu.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -6,10 +15,11 @@
 
 body {
     font-family: 'Noto Serif KR', serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, #f0f8f4 0%, #e8f5ea 100%);
     color: #333;
     line-height: 1.6;
     overflow-x: hidden;
+    padding: 5mm; /* 전체 앱 여백 5mm */
 }
 
 #root {
@@ -20,14 +30,17 @@ body {
     max-width: 100%;
     margin: 0 auto;
     background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 /* 헤더 섹션 */
 .header {
     text-align: center;
     padding: 60px 20px 40px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, #d4e8d9 0%, #a8d5b8 100%);
+    color: #2d5a3d;
     position: relative;
     overflow: hidden;
 }
@@ -74,7 +87,7 @@ body {
 }
 
 .heart {
-    color: #ff6b9d;
+    color: #5a9d6e;
     font-size: 1.5rem;
     animation: heartbeat 1.5s ease-in-out infinite;
 }
@@ -84,13 +97,119 @@ body {
     50% { transform: scale(1.2); }
 }
 
-/* 메인 이미지 */
-.main-image {
+/* 메인 이미지 슬라이더 */
+.main-image-slider {
+    position: relative;
     width: 100%;
-    height: 400px;
-    object-fit: cover;
-    display: block;
+    height: 800px;
+    overflow: hidden;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    cursor: grab;
+}
+
+.slide:active {
+    cursor: grabbing;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* 텍스트 오버레이 */
+.slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 60px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), transparent);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.slide-text {
+    text-align: center;
+    padding: 20px;
+    max-width: 90%;
+}
+
+.slide-title {
+    font-family: 'Cafe24Lovingu', serif;
+    font-size: 3.5rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: #FFD700; /* 노란색 */
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    font-style: italic;
+}
+
+.slide-subtitle {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.05em;
+    opacity: 0.95;
+}
+
+/* 버튼 제거됨 - 터치/드래그로 슬라이드 */
+
+.slider-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
     cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dot:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: scale(1.2);
+}
+
+.dot.active {
+    background: white;
+    width: 30px;
+    border-radius: 6px;
 }
 
 /* 인사말 섹션 */
@@ -103,7 +222,7 @@ body {
 .greeting h2 {
     font-family: 'Nanum Myeongjo', serif;
     font-size: 1.8rem;
-    color: #667eea;
+    color: #4a7c59;
     margin-bottom: 30px;
     font-weight: 400;
 }
@@ -119,8 +238,8 @@ body {
 /* 날짜/시간 섹션 */
 .date-info {
     padding: 40px 30px;
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    color: white;
+    background: linear-gradient(135deg, #a8d5b8 0%, #7ab892 100%);
+    color: #1a3d26;
     text-align: center;
 }
 
@@ -156,7 +275,7 @@ body {
 .location h2 {
     font-family: 'Nanum Myeongjo', serif;
     font-size: 1.5rem;
-    color: #667eea;
+    color: #4a7c59;
     margin-bottom: 25px;
     font-weight: 400;
 }
@@ -165,14 +284,100 @@ body {
     font-size: 1rem;
     line-height: 1.8;
     color: #555;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+/* 지도 컨테이너 */
+.map-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 25px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.map-image-link {
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.map-image-link:hover {
+    transform: scale(1.02);
+}
+
+.map-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: none;
+}
+
+.map-placeholder {
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+}
+
+.map-placeholder-content {
+    padding: 40px 20px;
+    text-align: center;
+    color: #666;
+}
+
+.map-placeholder-content p {
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.map-placeholder-content span {
+    color: #5a9d6e;
+    text-decoration: underline;
+    font-size: 0.9rem;
+}
+
+/* 버튼 컨테이너 */
+.location-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.copy-address-btn {
+    padding: 12px 30px;
+    background: #fff;
+    color: #5a9d6e;
+    border: 2px solid #5a9d6e;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Noto Serif KR', serif;
+}
+
+.copy-address-btn:hover {
+    background: #5a9d6e;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(90, 157, 110, 0.3);
+}
+
+.copy-address-btn.copied {
+    background: #4caf50;
+    border-color: #4caf50;
+    color: white;
 }
 
 .map-link {
     display: inline-block;
-    margin-top: 20px;
     padding: 12px 30px;
-    background: #667eea;
+    background: #5a9d6e;
     color: white;
     text-decoration: none;
     border-radius: 25px;
@@ -181,9 +386,9 @@ body {
 }
 
 .map-link:hover {
-    background: #5568d3;
+    background: #4a7c59;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 5px 15px rgba(90, 157, 110, 0.4);
 }
 
 /* 갤러리 섹션 */
@@ -196,7 +401,7 @@ body {
     font-family: 'Nanum Myeongjo', serif;
     font-size: 1.8rem;
     text-align: center;
-    color: #667eea;
+    color: #4a7c59;
     margin-bottom: 30px;
     font-weight: 400;
 }
@@ -242,7 +447,7 @@ body {
 .account h2 {
     font-family: 'Nanum Myeongjo', serif;
     font-size: 1.5rem;
-    color: #667eea;
+    color: #4a7c59;
     margin-bottom: 25px;
     font-weight: 400;
 }
@@ -267,7 +472,7 @@ body {
 }
 
 .account-item .number {
-    color: #667eea;
+    color: #5a9d6e;
     font-size: 1.1rem;
     font-weight: 500;
     word-break: break-all;
@@ -276,7 +481,7 @@ body {
 .copy-btn {
     margin-top: 10px;
     padding: 8px 20px;
-    background: #667eea;
+    background: #5a9d6e;
     color: white;
     border: none;
     border-radius: 20px;
@@ -286,7 +491,7 @@ body {
 }
 
 .copy-btn:hover {
-    background: #5568d3;
+    background: #4a7c59;
 }
 
 .copy-btn.copied {
@@ -369,8 +574,20 @@ body {
         font-size: 1.5rem;
     }
 
-    .main-image {
-        height: 300px;
+    .main-image-slider {
+        height: 600px;
+    }
+
+    .slide-overlay {
+        padding-top: 40px;
+    }
+
+    .slide-title {
+        font-size: 2.5rem;
+    }
+
+    .slide-subtitle {
+        font-size: 1rem;
     }
 
     .gallery-grid {
@@ -398,6 +615,49 @@ body {
 
     .greeting, .date-info, .location, .account {
         padding: 30px 20px;
+    }
+
+    .slide-overlay {
+        padding-top: 30px;
+    }
+
+    .slide-title {
+        font-size: 2rem;
+    }
+
+    .slide-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .map-image {
+        max-height: 300px;
+        object-fit: cover;
+    }
+
+    .map-placeholder {
+        min-height: 250px;
+    }
+
+    .map-placeholder-content {
+        padding: 30px 15px;
+    }
+
+    .location-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .copy-address-btn,
+    .map-link {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* 모바일에서 body 여백 조정 */
+@media (max-width: 480px) {
+    body {
+        padding: 3mm; /* 작은 화면에서는 3mm */
     }
 }
 

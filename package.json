@@ -1,0 +1,30 @@
+{
+  "name": "wedding-invitation",
+  "version": "1.0.0",
+  "description": "GitHub Pages를 이용한 모바일 청첩장입니다.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scarletJeong/wedding-invitation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scarletJeong/wedding-invitation/issues"
+  },
+  "homepage": "https://github.com/scarletJeong/wedding-invitation#readme",
+  "dependencies": {
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.2",
+    "vite": "^7.2.7"
+  }
+}

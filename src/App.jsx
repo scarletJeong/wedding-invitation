@@ -22,8 +22,8 @@ function App() {
 
   return (
     <div className="container">
-      <Header />
       <MainImage onImageClick={openModal} />
+      <Header />
       <Greeting />
       <DateInfo />
       <Location />
