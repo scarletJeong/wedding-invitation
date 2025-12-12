@@ -1,0 +1,403 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Serif KR', serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+#root {
+    width: 100%;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    background: #fff;
+}
+
+/* 헤더 섹션 */
+.header {
+    text-align: center;
+    padding: 60px 20px 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+    animation: float 20s infinite linear;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-50px, -50px) rotate(360deg); }
+}
+
+.header-content {
+    position: relative;
+    z-index: 1;
+}
+
+.header h1 {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+    letter-spacing: 0.1em;
+}
+
+.names {
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin: 30px 0;
+    letter-spacing: 0.05em;
+}
+
+.names span {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.heart {
+    color: #ff6b9d;
+    font-size: 1.5rem;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* 메인 이미지 */
+.main-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+}
+
+/* 인사말 섹션 */
+.greeting {
+    padding: 50px 30px;
+    text-align: center;
+    background: #fff;
+}
+
+.greeting h2 {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 1.8rem;
+    color: #667eea;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.greeting p {
+    font-size: 1rem;
+    line-height: 2;
+    color: #555;
+    margin-bottom: 15px;
+    white-space: pre-line;
+}
+
+/* 날짜/시간 섹션 */
+.date-info {
+    padding: 40px 30px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    text-align: center;
+}
+
+.date-info h2 {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.date-item {
+    margin: 20px 0;
+}
+
+.date-item .label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+.date-item .value {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+/* 장소 섹션 */
+.location {
+    padding: 40px 30px;
+    background: #fff;
+    text-align: center;
+}
+
+.location h2 {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 1.5rem;
+    color: #667eea;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.location-info {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.map-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: #667eea;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.map-link:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* 갤러리 섹션 */
+.gallery {
+    padding: 50px 20px;
+    background: #f8f9fa;
+}
+
+.gallery h2 {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 1.8rem;
+    text-align: center;
+    color: #667eea;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* 계좌 정보 섹션 */
+.account {
+    padding: 40px 30px;
+    background: #fff;
+    text-align: center;
+}
+
+.account h2 {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 1.5rem;
+    color: #667eea;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.account-item {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.account-item .name {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.account-item .bank {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.account-item .number {
+    color: #667eea;
+    font-size: 1.1rem;
+    font-weight: 500;
+    word-break: break-all;
+}
+
+.copy-btn {
+    margin-top: 10px;
+    padding: 8px 20px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+}
+
+.copy-btn:hover {
+    background: #5568d3;
+}
+
+.copy-btn.copied {
+    background: #4caf50;
+}
+
+/* 푸터 */
+.footer {
+    padding: 40px 20px;
+    text-align: center;
+    background: #333;
+    color: #fff;
+}
+
+.footer p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    line-height: 1.8;
+}
+
+/* 이미지 모달 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    animation: fadeIn 0.3s;
+}
+
+.modal.show {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.close:hover {
+    color: #ccc;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .names {
+        font-size: 1.5rem;
+    }
+
+    .main-image {
+        height: 300px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 40px 15px 30px;
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .names {
+        font-size: 1.2rem;
+    }
+
+    .names span {
+        display: block;
+        margin: 5px 0;
+    }
+
+    .greeting, .date-info, .location, .account {
+        padding: 30px 20px;
+    }
+}
+
